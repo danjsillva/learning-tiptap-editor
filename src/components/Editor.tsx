@@ -54,11 +54,21 @@ const exampleContent = `
 const Editor = () => {
   const [fileContent, setFileContent] = useState<String>(exampleContent);
   const [previewContent, setPreviewContent] = useState<String>(exampleContent);
+  const replacementVariables = {
+    name: "John Doe",
+    email: "johndoe@email.com",
+    phone: "123-456-7890",
+    address: "123 Main St.",
+    city: "New York",
+    state: "NY",
+    zip: "10001",
+    company: "Company Name",
+  };
 
   useEffect(() => {
     if (editor) {
       editor.commands.setContent(fileContent);
-      setPreviewContent(fileContent);
+      setPreviewContent(getPreviewContentWithData(fileContent));
     }
   }, [fileContent]);
 
@@ -66,9 +76,17 @@ const Editor = () => {
     extensions: [StarterKit],
     content: fileContent,
     onUpdate: ({ editor }) => {
-      setPreviewContent(editor.getHTML());
+      setPreviewContent(getPreviewContentWithData(editor.getHTML()));
     },
   });
+
+  const getPreviewContentWithData = (content) => {
+    for (const [key, value] of Object.entries(replacementVariables)) {
+      content = content.replace(`{{${key}}}`, value);
+    }
+
+    return content;
+  };
 
   if (!editor) {
     return null;
