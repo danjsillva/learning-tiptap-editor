@@ -9,14 +9,28 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tiptap/extension-color": "^2.0.1",
+    "@tiptap/extension-text-style": "^2.0.1",
+    "@tiptap/pm": "^2.0.1",
+    "@tiptap/react": "^2.0.1",
+    "@tiptap/starter-kit": "^2.0.1",
     "@types/node": "18.15.11",
     "@types/react": "18.0.31",
     "@types/react-dom": "18.0.11",
     "eslint": "8.37.0",
     "eslint-config-next": "13.2.4",
+    "mammoth": "^1.5.1",
     "next": "13.2.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-icons": "^4.8.0",
     "typescript": "5.0.2"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.14",
+    "eslint-config-prettier": "^8.8.0",
+    "postcss": "^8.4.21",
+    "prettier": "^2.8.7",
+    "tailwindcss": "^3.3.0"
   }
 }
