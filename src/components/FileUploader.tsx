@@ -39,9 +39,9 @@ const FileUploader = ({ setFileContent }) => {
 
   return (
     <div className="flex justify-center">
-      <div className="w-64 m-1 mr-8">
+      <div className="m-1">
         <input
-          className="relative w-full rounded border border-solid px-3 text-base file:-mx-3 file:-my-[0.32rem] file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:py-[0.32rem] file:[margin-inline-end:0.5rem] focus:text-neutral-700 dark:border-neutral-600 dark:file:bg-neutral-700 dark:file:text-neutral-100 cursor-pointer file:cursor-pointer"
+          className="text-sm file:bg-gray-300 rounded border border-solid border-gray-300 file:border-0 px-3 py-0.5 file:py-[0.32rem] file:-mx-3 file:-my-[0.32rem] file:[margin-inline-end:0.5rem] cursor-pointer file:cursor-pointer"
           type="file"
           onChange={handleFileInput}
         />
