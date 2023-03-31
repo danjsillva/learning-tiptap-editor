@@ -37,8 +37,6 @@ const FileUploader = ({ setFileContent }) => {
     }
   };
 
-  // return <input type="file" className="my-1" onChange={handleFileInput} />;
-
   return (
     <div className="flex justify-center">
       <div className="w-64 m-1 mr-8">
