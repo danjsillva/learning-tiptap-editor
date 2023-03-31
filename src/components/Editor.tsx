@@ -52,17 +52,22 @@ const exampleContent = `
     `;
 
 const Editor = () => {
-  const [fileContent, setFileContent] = useState<String>("");
+  const [fileContent, setFileContent] = useState<String>(exampleContent);
+  const [previewContent, setPreviewContent] = useState<String>(exampleContent);
 
   useEffect(() => {
     if (editor) {
       editor.commands.setContent(fileContent);
+      setPreviewContent(fileContent);
     }
   }, [fileContent]);
 
   const editor = useEditor({
     extensions: [StarterKit],
-    content: exampleContent,
+    content: fileContent,
+    onUpdate: ({ editor }) => {
+      setPreviewContent(editor.getHTML());
+    },
   });
 
   if (!editor) {
@@ -177,7 +182,14 @@ const Editor = () => {
         <FileUploader setFileContent={setFileContent} />
       </section>
 
-      <EditorContent editor={editor} />
+      <section className="flex justify-betwee">
+        <EditorContent editor={editor} className="max-w-[50%] mr-1" />
+
+        <div
+          dangerouslySetInnerHTML={{ __html: previewContent }}
+          className="max-w-[50%] ml-1"
+        />
+      </section>
     </>
   );
 };
