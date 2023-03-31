@@ -182,7 +182,7 @@ const Editor = () => {
         <FileUploader setFileContent={setFileContent} />
       </section>
 
-      <section className="flex justify-betwee">
+      <section className="flex mt-5">
         <EditorContent editor={editor} className="max-w-[50%] mr-1" />
 
         <div
