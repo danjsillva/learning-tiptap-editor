@@ -3,6 +3,7 @@ import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import TextStyle from "@tiptap/extension-text-style";
 import FontFamily from "@tiptap/extension-font-family";
+import Color from "@tiptap/extension-color";
 import {
   BsTypeBold,
   BsTypeItalic,
@@ -17,6 +18,7 @@ import {
   BsCodeSlash,
   BsBlockquoteLeft,
   BsArrowsCollapse,
+  BsPaintBucket,
 } from "react-icons/bs";
 
 import EditorButton from "./EditorButton";
@@ -75,7 +77,14 @@ const Editor = () => {
   }, [fileContent]);
 
   const editor = useEditor({
-    extensions: [StarterKit, TextStyle, FontFamily],
+    extensions: [
+      StarterKit,
+      TextStyle,
+      FontFamily,
+      Color.configure({
+        types: ["textStyle"],
+      }),
+    ],
     content: fileContent,
     onUpdate: ({ editor }) => {
       setPreviewContent(getPreviewContentWithData(editor.getHTML()));
@@ -111,6 +120,21 @@ const Editor = () => {
             }
           >
             Comic Sans MS
+          </EditorButton>
+
+          <EditorButton
+            active={editor.isActive("textStyle", {
+              color: "#ff0000",
+            })}
+            onClick={() =>
+              editor.isActive("textStyle", {
+                color: "#ff0000",
+              })
+                ? editor.commands.setColor("#000000")
+                : editor.commands.setColor("#ff0000")
+            }
+          >
+            <BsPaintBucket />
           </EditorButton>
 
           <EditorButton
