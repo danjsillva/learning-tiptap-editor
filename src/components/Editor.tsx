@@ -24,12 +24,16 @@ import {
   BsBlockquoteLeft,
   BsArrowsCollapse,
   BsPaintBucket,
-  BsTable,
   BsTextCenter,
   BsTextLeft,
   BsTextRight,
   BsTextParagraph,
 } from "react-icons/bs";
+import {
+  AiOutlineTable,
+  AiOutlineInsertRowBelow,
+  AiOutlineInsertRowRight,
+} from "react-icons/ai";
 
 import EditorButton from "./EditorButton";
 import FileUploader from "./FileUploader";
@@ -299,7 +303,15 @@ const Editor = () => {
                 .run()
             }
           >
-            <BsTable />
+            <AiOutlineTable />
+          </EditorButton>
+
+          <EditorButton onClick={() => editor.commands.addColumnAfter()}>
+            <AiOutlineInsertRowRight />
+          </EditorButton>
+
+          <EditorButton onClick={() => editor.commands.addRowAfter()}>
+            <AiOutlineInsertRowBelow />
           </EditorButton>
         </div>
 
