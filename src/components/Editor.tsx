@@ -4,6 +4,7 @@ import StarterKit from "@tiptap/starter-kit";
 import TextStyle from "@tiptap/extension-text-style";
 import FontFamily from "@tiptap/extension-font-family";
 import Color from "@tiptap/extension-color";
+import TextAlign from "@tiptap/extension-text-align";
 import Table from "@tiptap/extension-table";
 import TableCell from "@tiptap/extension-table-cell";
 import TableHeader from "@tiptap/extension-table-header";
@@ -24,6 +25,10 @@ import {
   BsArrowsCollapse,
   BsPaintBucket,
   BsTable,
+  BsTextCenter,
+  BsTextLeft,
+  BsTextRight,
+  BsTextParagraph,
 } from "react-icons/bs";
 
 import EditorButton from "./EditorButton";
@@ -87,6 +92,9 @@ const Editor = () => {
       TextStyle,
       FontFamily,
       Color,
+      TextAlign.configure({
+        types: ["heading", "paragraph"],
+      }),
       Table.configure({
         HTMLAttributes: {
           resizable: true,
@@ -152,6 +160,34 @@ const Editor = () => {
             }
           >
             <BsPaintBucket />
+          </EditorButton>
+
+          <EditorButton
+            active={editor.isActive({ textAlign: "left" })}
+            onClick={() => editor.chain().focus().setTextAlign("left").run()}
+          >
+            <BsTextLeft />
+          </EditorButton>
+
+          <EditorButton
+            active={editor.isActive({ textAlign: "center" })}
+            onClick={() => editor.chain().focus().setTextAlign("center").run()}
+          >
+            <BsTextCenter />
+          </EditorButton>
+
+          <EditorButton
+            active={editor.isActive({ textAlign: "right" })}
+            onClick={() => editor.chain().focus().setTextAlign("right").run()}
+          >
+            <BsTextRight />
+          </EditorButton>
+
+          <EditorButton
+            active={editor.isActive({ textAlign: "justify" })}
+            onClick={() => editor.chain().focus().setTextAlign("justify").run()}
+          >
+            <BsTextParagraph />
           </EditorButton>
 
           <EditorButton
