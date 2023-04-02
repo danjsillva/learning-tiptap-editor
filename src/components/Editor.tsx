@@ -28,6 +28,7 @@ import {
   BsTextLeft,
   BsTextRight,
   BsTextParagraph,
+  BsDownload,
 } from "react-icons/bs";
 import {
   AiOutlineTable,
@@ -128,6 +129,26 @@ const Editor = () => {
     return content;
   };
 
+  const exportHTML = (extension = "docx") => {
+    let header =
+      "<html xmlns:o='urn:schemas-microsoft-com:office:office' " +
+      "xmlns:w='urn:schemas-microsoft-com:office:word' " +
+      "xmlns='http://www.w3.org/TR/REC-html40'>" +
+      "<head><meta charset='utf-8'><title>Export HTML to Word Document with JavaScript</title></head><body>";
+    let footer = "</body></html>";
+    let sourceHTML = header + fileContent + footer;
+    let source =
+      "data:application/vnd.ms-word;charset=utf-8," +
+      encodeURIComponent(sourceHTML);
+    let fileDownload = document.createElement("a");
+
+    document.body.appendChild(fileDownload);
+    fileDownload.href = source;
+    fileDownload.download = "document." + extension;
+    fileDownload.click();
+    document.body.removeChild(fileDownload);
+  };
+
   if (!editor) {
     return null;
   }
@@ -148,7 +169,7 @@ const Editor = () => {
                 .run()
             }
           >
-            Comic Sans MS
+            Comic Sans
           </EditorButton>
 
           <EditorButton
@@ -315,7 +336,23 @@ const Editor = () => {
           </EditorButton>
         </div>
 
-        <FileUploader setFileContent={setFileContent} />
+        <div className="flex justify-between">
+          <EditorButton onClick={() => exportHTML("docx")}>
+            <BsDownload />{" "}
+            <span className="text-xs text-white px-1 py-0.5 ml-1 bg-gray-700 rounded">
+              .docx
+            </span>
+          </EditorButton>
+
+          <EditorButton onClick={() => exportHTML("odt")}>
+            <BsDownload />{" "}
+            <span className="text-xs text-white px-1 py-0.5 ml-1 bg-gray-700 rounded">
+              .odt
+            </span>
+          </EditorButton>
+
+          <FileUploader setFileContent={setFileContent} />
+        </div>
       </section>
 
       <section className="flex mt-5">
