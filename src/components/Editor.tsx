@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
+import TextStyle from "@tiptap/extension-text-style";
+import FontFamily from "@tiptap/extension-font-family";
 import {
   BsTypeBold,
   BsTypeItalic,
@@ -73,7 +75,7 @@ const Editor = () => {
   }, [fileContent]);
 
   const editor = useEditor({
-    extensions: [StarterKit],
+    extensions: [StarterKit, TextStyle, FontFamily],
     content: fileContent,
     onUpdate: ({ editor }) => {
       setPreviewContent(getPreviewContentWithData(editor.getHTML()));
@@ -96,6 +98,21 @@ const Editor = () => {
     <>
       <section className="flex justify-between rounded bg-gray-100 p-1">
         <div>
+          <EditorButton
+            active={editor.isActive("textStyle", {
+              fontFamily: "Comic Sans MS, Comic Sans",
+            })}
+            onClick={() =>
+              editor
+                .chain()
+                .focus()
+                .setFontFamily("Comic Sans MS, Comic Sans")
+                .run()
+            }
+          >
+            Comic Sans MS
+          </EditorButton>
+
           <EditorButton
             active={editor.isActive("bold")}
             onClick={() => editor.chain().focus().toggleBold().run()}
