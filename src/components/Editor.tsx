@@ -4,6 +4,10 @@ import StarterKit from "@tiptap/starter-kit";
 import TextStyle from "@tiptap/extension-text-style";
 import FontFamily from "@tiptap/extension-font-family";
 import Color from "@tiptap/extension-color";
+import Table from "@tiptap/extension-table";
+import TableCell from "@tiptap/extension-table-cell";
+import TableHeader from "@tiptap/extension-table-header";
+import TableRow from "@tiptap/extension-table-row";
 import {
   BsTypeBold,
   BsTypeItalic,
@@ -19,6 +23,7 @@ import {
   BsBlockquoteLeft,
   BsArrowsCollapse,
   BsPaintBucket,
+  BsTable,
 } from "react-icons/bs";
 
 import EditorButton from "./EditorButton";
@@ -81,8 +86,20 @@ const Editor = () => {
       StarterKit,
       TextStyle,
       FontFamily,
-      Color.configure({
-        types: ["textStyle"],
+      Color,
+      Table.configure({
+        HTMLAttributes: {
+          resizable: true,
+          class: "table-fixed border-collapse border border-solid",
+        },
+      }),
+      TableRow,
+      TableHeader,
+      TableCell.configure({
+        HTMLAttributes: {
+          resizable: true,
+          class: "border border-solid",
+        },
       }),
     ],
     content: fileContent,
@@ -235,6 +252,18 @@ const Editor = () => {
             onClick={() => editor.chain().focus().setHorizontalRule().run()}
           >
             <BsArrowsCollapse />
+          </EditorButton>
+
+          <EditorButton
+            onClick={() =>
+              editor
+                .chain()
+                .focus()
+                .insertTable({ rows: 3, cols: 3, withHeaderRow: true })
+                .run()
+            }
+          >
+            <BsTable />
           </EditorButton>
         </div>
 
