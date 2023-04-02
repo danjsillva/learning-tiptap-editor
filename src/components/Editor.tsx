@@ -52,8 +52,8 @@ const exampleContent = `
     `;
 
 const Editor = () => {
-  const [fileContent, setFileContent] = useState<String>(exampleContent);
-  const [previewContent, setPreviewContent] = useState<String>(exampleContent);
+  const [fileContent, setFileContent] = useState<string>(exampleContent);
+  const [previewContent, setPreviewContent] = useState<string>(exampleContent);
   const replacementVariables = {
     name: "John Doe",
     email: "johndoe@email.com",
@@ -80,7 +80,7 @@ const Editor = () => {
     },
   });
 
-  const getPreviewContentWithData = (content) => {
+  const getPreviewContentWithData = (content: string) => {
     for (const [key, value] of Object.entries(replacementVariables)) {
       content = content.replace(`{{${key}}}`, value);
     }

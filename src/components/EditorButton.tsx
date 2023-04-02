@@ -1,10 +1,11 @@
-interface ButtonProps {
-  children: string;
+interface EditorButtonProps {
+  children: string | JSX.Element;
   active?: boolean;
+  disabled?: boolean;
   onClick: () => boolean;
 }
 
-const EditorButton = ({ children, ...props }: ButtonProps) => {
+const EditorButton = ({ children, ...props }: EditorButtonProps) => {
   return (
     <button
       {...props}

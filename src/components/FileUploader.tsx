@@ -1,6 +1,10 @@
 import mammoth from "mammoth";
 
-const FileUploader = ({ setFileContent }) => {
+interface FileUploaderProps {
+  setFileContent: (content: string) => void;
+}
+
+const FileUploader = ({ setFileContent }: FileUploaderProps) => {
   const handleFileInput = (
     event: React.ChangeEvent<HTMLInputElement>
   ): void => {
@@ -16,6 +20,8 @@ const FileUploader = ({ setFileContent }) => {
 
       reader.onload = function (_e) {
         let content = reader.result;
+
+        if (!content || typeof content === "string") return;
 
         mammoth
           .convertToHtml({ arrayBuffer: content })
