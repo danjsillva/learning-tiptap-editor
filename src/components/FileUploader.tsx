@@ -53,10 +53,10 @@ const FileUploader = ({ setFileContent }: FileUploaderProps) => {
     <>
       <label
         htmlFor="input-file"
-        className="text-sm rounded bg-gray-100 px-2 py-1 m-1 hover:bg-gray-300 cursor-pointer"
+        className="text-sm font-sans rounded bg-gray-100 px-2 py-1 m-1 hover:bg-gray-300 cursor-pointer"
       >
         <BsUpload />
-        <span className="text-xs text-white px-1 py-0.5 ml-1 bg-gray-700 rounded">
+        <span className="text-xs text-white px-1 py-0.5 ml-2 bg-gray-700 rounded">
           .docx/.odt
         </span>
       </label>

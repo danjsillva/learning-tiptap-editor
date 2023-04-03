@@ -107,10 +107,13 @@ const Editor = () => {
         },
       }),
       TableRow,
-      TableHeader,
+      TableHeader.configure({
+        HTMLAttributes: {
+          class: "border border-solid",
+        },
+      }),
       TableCell.configure({
         HTMLAttributes: {
-          resizable: true,
           class: "border border-solid",
         },
       }),
@@ -358,7 +361,7 @@ const Editor = () => {
       <section className="flex justify-center my-7">
         <EditorContent
           editor={editor}
-          className="w-[48rem] min-h-[100vh] p-12 shadow shadow-gray-300 rounded "
+          className="w-[48rem] min-h-[100vh] p-12 shadow shadow-gray-300"
         />
 
         {/*<div
