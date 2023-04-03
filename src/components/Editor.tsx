@@ -158,7 +158,7 @@ const Editor = () => {
 
   return (
     <>
-      <section className="flex justify-between rounded bg-gray-100 p-1">
+      <section className="sticky top-5 flex justify-between rounded bg-gray-100 p-1 z-10">
         <div>
           <EditorButton
             active={editor.isActive("textStyle", {
@@ -342,14 +342,14 @@ const Editor = () => {
         <div className="flex justify-between">
           <EditorButton onClick={() => exportHTML("docx")}>
             <BsDownload />{" "}
-            <span className="text-xs text-white px-1 py-0.5 ml-1 bg-gray-700 rounded">
+            <span className="text-[0.5rem] text-white px-1 py-0.5 ml-1 bg-gray-700 rounded">
               .docx
             </span>
           </EditorButton>
 
           <EditorButton onClick={() => exportHTML("odt")}>
             <BsDownload />{" "}
-            <span className="text-xs text-white px-1 py-0.5 ml-1 bg-gray-700 rounded">
+            <span className="text-[0.5rem] text-white px-1 py-0.5 ml-1 bg-gray-700 rounded">
               .odt
             </span>
           </EditorButton>
@@ -358,7 +358,7 @@ const Editor = () => {
         </div>
       </section>
 
-      <section className="flex justify-center my-7">
+      <section className="flex justify-center my-9">
         <EditorContent
           editor={editor}
           className="w-[48rem] min-h-[100vh] p-12 shadow shadow-gray-300"

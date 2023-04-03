@@ -2,6 +2,8 @@ import { useState } from "react";
 import mammoth from "mammoth";
 import { BsUpload } from "react-icons/bs";
 
+import EditorButton from "./EditorButton";
+
 interface FileUploaderProps {
   setFileContent: (content: string) => void;
 }
@@ -51,15 +53,14 @@ const FileUploader = ({ setFileContent }: FileUploaderProps) => {
 
   return (
     <>
-      <label
-        htmlFor="input-file"
-        className="text-sm font-sans rounded bg-gray-100 px-2 py-1 m-1 hover:bg-gray-300 cursor-pointer"
-      >
-        <BsUpload />
-        <span className="text-xs text-white px-1 py-0.5 ml-2 bg-gray-700 rounded">
-          .docx/.odt
-        </span>
-      </label>
+      <EditorButton>
+        <label htmlFor="input-file" className="cursor-pointer">
+          <BsUpload />
+          <span className="text-[0.5rem] text-white px-1 py-0.5 ml-2 bg-gray-700 rounded">
+            .docx/.odt
+          </span>
+        </label>
+      </EditorButton>
       <input
         id="input-file"
         className="hidden text-sm file:bg-gray-300 rounded border border-solid border-gray-300 file:border-0 px-3 py-0.5 file:py-[0.32rem] file:-mx-3 file:-my-[0.32rem] file:[margin-inline-end:0.5rem] cursor-pointer file:cursor-pointer"
