@@ -9,6 +9,7 @@ import Table from "@tiptap/extension-table";
 import TableCell from "@tiptap/extension-table-cell";
 import TableHeader from "@tiptap/extension-table-header";
 import TableRow from "@tiptap/extension-table-row";
+import Image from "@tiptap/extension-image";
 import {
   BsTypeBold,
   BsTypeItalic,
@@ -29,6 +30,7 @@ import {
   BsTextRight,
   BsTextParagraph,
   BsDownload,
+  BsImage,
 } from "react-icons/bs";
 import {
   AiOutlineTable,
@@ -116,6 +118,9 @@ const Editor = () => {
         HTMLAttributes: {
           class: "border border-solid",
         },
+      }),
+      Image.configure({
+        inline: true,
       }),
     ],
     content: fileContent,
@@ -336,6 +341,20 @@ const Editor = () => {
 
           <EditorButton onClick={() => editor.commands.addRowAfter()}>
             <AiOutlineInsertRowBelow />
+          </EditorButton>
+
+          <EditorButton
+            onClick={() =>
+              editor
+                .chain()
+                .focus()
+                .setImage({
+                  src: "https://img.setka.io/clients/D3SuW9_Vtk6NhYeFXfduUy55A4Dromkt/post_images/screenshot-2022-01-31-at-15.41.00-2022013112411228.png",
+                })
+                .run()
+            }
+          >
+            <BsImage />
           </EditorButton>
         </div>
 
