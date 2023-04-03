@@ -132,14 +132,14 @@ const Editor = () => {
     return content;
   };
 
-  const exportHTML = (extension = "docx") => {
+  const exportHTML = (content: string, extension = "docx") => {
     let header =
       "<html xmlns:o='urn:schemas-microsoft-com:office:office' " +
       "xmlns:w='urn:schemas-microsoft-com:office:word' " +
       "xmlns='http://www.w3.org/TR/REC-html40'>" +
       "<head><meta charset='utf-8'><title>Export HTML to Word Document with JavaScript</title></head><body>";
     let footer = "</body></html>";
-    let sourceHTML = header + fileContent + footer;
+    let sourceHTML = header + content + footer;
     let source =
       "data:application/vnd.ms-word;charset=utf-8," +
       encodeURIComponent(sourceHTML);
@@ -340,14 +340,14 @@ const Editor = () => {
         </div>
 
         <div className="flex justify-between">
-          <EditorButton onClick={() => exportHTML("docx")}>
+          <EditorButton onClick={() => exportHTML(previewContent, "docx")}>
             <BsDownload />{" "}
             <span className="text-[0.5rem] text-white px-1 py-0.5 ml-1 bg-gray-700 rounded">
               .docx
             </span>
           </EditorButton>
 
-          <EditorButton onClick={() => exportHTML("odt")}>
+          <EditorButton onClick={() => exportHTML(previewContent, "odt")}>
             <BsDownload />{" "}
             <span className="text-[0.5rem] text-white px-1 py-0.5 ml-1 bg-gray-700 rounded">
               .odt
