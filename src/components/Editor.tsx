@@ -355,13 +355,16 @@ const Editor = () => {
         </div>
       </section>
 
-      <section className="flex mt-5">
-        <EditorContent editor={editor} className="max-w-[50%] mr-1" />
+      <section className="flex justify-center my-7">
+        <EditorContent
+          editor={editor}
+          className="w-[48rem] min-h-[100vh] p-12 shadow shadow-gray-300 rounded "
+        />
 
-        <div
+        {/*<div
           dangerouslySetInnerHTML={{ __html: previewContent }}
           className="max-w-[50%] ml-1"
-        />
+        />*/}
       </section>
     </>
   );

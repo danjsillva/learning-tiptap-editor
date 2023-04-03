@@ -12,11 +12,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="container mx-auto">
-        <h1 className="text-5xl font-extrabold mt-24 mb-12">
-          Welcome to Tiptap Editor!
-        </h1>
-
+      <main className="container mx-auto mt-12">
         <Editor />
       </main>
     </>
