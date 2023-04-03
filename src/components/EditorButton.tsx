@@ -2,7 +2,7 @@ interface EditorButtonProps {
   children: string | JSX.Element | JSX.Element[] | any;
   active?: boolean;
   disabled?: boolean;
-  onClick: () => boolean | void;
+  onClick?: () => boolean | void;
 }
 
 const EditorButton = ({ children, ...props }: EditorButtonProps) => {
