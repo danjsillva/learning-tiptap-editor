@@ -31,20 +31,24 @@ const FileUploader = ({ setFileContent }: FileUploaderProps) => {
 
         if (!content || typeof content === "string") return;
 
-        mammoth
-          .convertToHtml({ arrayBuffer: content })
-          .then(function (result) {
-            let html = result.value; // The generated HTML
-            let messages = result.messages; // Any messages, such as warnings during conversion
+        if (file.name.split(".").pop() === "html") {
+          setFileContent(new TextDecoder().decode(content));
+        } else {
+          mammoth
+            .convertToHtml({ arrayBuffer: content })
+            .then(function (result) {
+              let html = result.value; // The generated HTML
+              let messages = result.messages; // Any messages, such as warnings during conversion
 
-            console.log(html);
-            console.log(messages);
+              console.log(html);
+              console.log(messages);
 
-            setFileContent(html);
-          })
-          .catch(function (error) {
-            console.error(error);
-          });
+              setFileContent(html);
+            })
+            .catch(function (error) {
+              console.error(error);
+            });
+        }
       };
 
       reader.readAsArrayBuffer(file);
@@ -57,7 +61,7 @@ const FileUploader = ({ setFileContent }: FileUploaderProps) => {
         <label htmlFor="input-file" className="cursor-pointer">
           <BsUpload />
           <span className="text-[0.5rem] text-white px-1 py-0.5 ml-2 bg-gray-700 rounded">
-            .docx/.odt
+            .docx/.odt/.html
           </span>
         </label>
       </EditorButton>

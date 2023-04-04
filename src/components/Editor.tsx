@@ -31,6 +31,7 @@ import {
   BsTextParagraph,
   BsDownload,
   BsImage,
+  BsEye,
 } from "react-icons/bs";
 import {
   AiOutlineTable,
@@ -75,6 +76,10 @@ const exampleContent = `
 const Editor = () => {
   const [fileContent, setFileContent] = useState<string>(exampleContent);
   const [previewContent, setPreviewContent] = useState<string>(exampleContent);
+  const [isPreviewHTMLEnabled, setIsPreviewHTMLEnabled] =
+    useState<boolean>(false);
+  const [isPreviewCodeEnabled, setIsPreviewCodeEnabled] =
+    useState<boolean>(false);
   const replacementVariables = {
     name: "John Doe",
     email: "johndoe@email.com",
@@ -89,7 +94,9 @@ const Editor = () => {
   useEffect(() => {
     if (editor) {
       editor.commands.setContent(fileContent);
-      setPreviewContent(getPreviewContentWithData(fileContent));
+      setPreviewContent(
+        getPreviewContentWithData(getPreviewContentWithData(fileContent))
+      );
     }
   }, [fileContent]);
 
@@ -359,6 +366,24 @@ const Editor = () => {
         </div>
 
         <div className="flex justify-between">
+          <EditorButton
+            onClick={() => setIsPreviewCodeEnabled(!isPreviewCodeEnabled)}
+          >
+            <BsEye />{" "}
+            <span className="text-[0.5rem] text-white px-1 py-0.5 ml-1 bg-gray-700 rounded">
+              .html
+            </span>
+          </EditorButton>
+
+          <EditorButton
+            onClick={() => setIsPreviewHTMLEnabled(!isPreviewHTMLEnabled)}
+          >
+            <BsEye />{" "}
+            <span className="text-[0.5rem] text-white px-1 py-0.5 ml-1 bg-gray-700 rounded">
+              .preview
+            </span>
+          </EditorButton>
+
           <EditorButton onClick={() => exportHTML(previewContent, "docx")}>
             <BsDownload />{" "}
             <span className="text-[0.5rem] text-white px-1 py-0.5 ml-1 bg-gray-700 rounded">
@@ -380,13 +405,21 @@ const Editor = () => {
       <section className="flex justify-center my-9">
         <EditorContent
           editor={editor}
-          className="w-[48rem] min-h-[100vh] p-12 shadow shadow-gray-300"
+          className="min-w-[21.5cm] max-w-[21.5cm] min-h-[31.5cm] p-12 shadow shadow-gray-500"
         />
 
-        {/*<div
-          dangerouslySetInnerHTML={{ __html: previewContent }}
-          className="max-w-[50%] ml-1"
-        />*/}
+        {isPreviewCodeEnabled && (
+          <div className="min-w-[21.5cm] max-w-[21.5cm] min-h-[31.5cm] p-12 shadow shadow-gray-500 ml-7">
+            {previewContent}
+          </div>
+        )}
+
+        {isPreviewHTMLEnabled && (
+          <div
+            dangerouslySetInnerHTML={{ __html: previewContent }}
+            className="min-w-[21.5cm] max-w-[21.5cm] min-h-[31.5cm] p-12 shadow shadow-gray-500 ml-7"
+          />
+        )}
       </section>
     </>
   );
